@@ -1,0 +1,201 @@
+\documentclass[11pt, spanish]{article}
+\pagestyle{empty}
+
+%acentos de la forma � en vez de \'a
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+%Enumeración con columnas que se usa con \begin{multicols}{2} \begin{enumerate}
+\usepackage{multicol}
+\usepackage{multirow}
+
+
+%Para poder usar begin comment
+\usepackage{verbatim}
+
+%Teoremas
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}
+
+
+%letras para enumerar
+\makeatletter\renewcommand\theenumi{\@alph\c@enumi}\makeatother\renewcommand\labelenumi{\theenumi)}
+
+%m�rgenes
+\usepackage[left=2cm,top=2cm,right=2cm]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{enumerate}
+
+%conjuntos N, Q, R, Z, C
+\usepackage{dsfont}
+\newcommand{\N}{\mathds{N}}
+\newcommand{\Q}{\mathds{Q}}
+\newcommand{\R}{\mathds{R}}
+\newcommand{\Z}{\mathds{Z}}
+\newcommand{\C}{\mathds{C}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Pol}{\mathcal{P}}
+
+%Transformada de Laplace
+\renewcommand{\L}{\mathcal{L}}
+
+%Probabilidades
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Var}{\mathbb{V}\text{ar}}
+
+
+%Optimization
+\newcommand{\OPT}{\textsc{opt}}
+\newcommand{\ALG}{\textsc{alg}}
+
+
+%l�gica
+\newcommand{\ssi}{\Leftrightarrow}
+
+%funciones
+\newcommand{\function}[5]{  \begin{array}{rl}
+                                #1: #2 &\longrightarrow #3 \\
+                                #4 & \longmapsto #1\left(#4\right)= #5
+                            \end{array} }
+
+\newcommand{\funcion}[3]{#1: #2 \longrightarrow #3 }
+\newcommand{\parteentera}[1]{[#1]}
+
+%%%operadores matematicos
+\usepackage{mathtools}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\newcommand{\tr}{\text{tr}}
+
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+% % % % % % % % % %
+%\providecommand{\abs}[1]{\lvert#1 \rvert}
+%\providecommand{\norm}[1]{\lVert#1 \rVert}
+%\providecommand{\pin}[2]{\left< #1,#2 \right>} %producto interno
+
+\providecommand{\dpartial}[2]{\frac{\partial #1}{\partial #2}} %derivada parcial
+
+\usepackage{amssymb}
+\usepackage{amsmath, amsthm, amsfonts}
+
+%Im�genes
+\usepackage{graphicx}
+\usepackage{float}
+\begin{document}
+\fancyhead[L]{Facultad de Ciencias Físicas y Matemáticas}
+\fancyhead[R]{Universidad de Chile}
+
+\begin{flushleft}
+  \textbf{Tópicos en Matemáticas Discretas III - Online Algorithms and Scheduling}
+  \\\textbf{Professor:} Andreas Wiese.
+  \\\textbf{Teaching Assistant:} Andrés Cristi.
+\end{flushleft}
+
+
+\begin{center}
+  \Large{\textbf{Homework \#1}}
+\end{center}
+
+%\begin{flushleft}
+
+
+
+\begin{itemize}
+  \item[\textbf{P1.}] \textbf{(Ice cream shop)}
+    Felipito owns a small ice cream shop with a machine that can
+    produce two flavors of ice cream, vanilla and chocolate. 
+    At each point in time, the machine is in one of two modes: vanilla mode or chocolate mode. 
+    Before changing
+     the mode, he has to run the cleaning
+    program of the machine which is very long and the cost due to waiting of customers etc. is $\$100$.
+    Producing a vanilla ice cream with the machine costs
+    $\$10$, producing a chocolate ice cream costs $\$20$. Felipito can produce the ice cream
+    manually as well, so he does not have to clean
+    the machine, but then the costs are $\$20$ and
+    $\$40$, respectively.
+
+    Suppose there is a queue outside the shop of unknown length in which each customer wants exactly one unit of ice cream. 
+    Felipito know the flavor that a customer wants only when she is the next in line.
+    Suppose the starting mode of the machine is vanilla. What would you recommend 
+    Felipito to do in order to minimize his cost? Find a deterministic $2$-competitive algorithm.
+
+
+\item[\textbf{P2.}] \textbf{(The lost pen problem)}
+  You lost your pen below the couch and you want to find it. Since
+  there is no much light, the only way is to
+  insert your hand in the space between the couch and the floor and
+  start moving it until you touch the pen. ¿How could you
+  minimize the total distance traveled?
+
+  Let us say that the couch is very long, so we model the position
+  of the pen as a point $a\in \R$ and the starting point of the search
+  as the origin.
+  The \emph{offline} optimal strategy costs $\OPT(a)=|a|$.
+
+  \begin{enumerate}
+    \item Is there an strictly competitive algorithm? This is, one such
+      that for some constant $c$, $\ALG(a) \leq c\cdot \OPT(a)$, for every
+      $a \in \R$ (without the additive constant).
+     
+    \item Consider the following algorithm for fixed $\beta>1$. You
+      start moving to the right $\beta$, then you go back to the origin,
+      then you move $\beta^2$ to the left, and continue going back to the
+      origin and moving $\beta^i$. What is the asymptotic competitive ratio of this 
+      algorithm?
+
+    \item Calculate the value of $\beta$ that minimizes the asymptotic competitive ratio.
+  
+  \end{enumerate}
+  
+  \item[\textbf{P3.}] \textbf{(Non-Additive Multislope Ski Rental)}
+    You have to buy equipment for a certain task that will take an
+    unknown amount of time $T$. There are several types of equipment for performing the task, described by
+    the pairs $(b_i,r_i)_{i=0}^k$, with $b_i\leq b_{i+1}$ and $r_i \geq r_{i+1}$.
+    If you want to use equipment $i$, you need to pay $b_i$ to purchase it and then you pay $r_i$ per unit time in production cost.
+    Assume that $b_0=0$ and $r_k=0$, and that at any time (not necessarily
+    integral) you can purchase equipment  $i$ by paying $b_i$, regardless
+    of what you have bought so far.
+    
+\begin{enumerate}
+  \item Denote by $\OPT(T)$ the optimal value when
+    the task lasts $T$ units of time and find an expression for
+    it in terms of $T$ and $(b_i,r_i)_{i=0}^k$. 
+    Show that it is a concave function of $T$.
+      
+    \item Denote by $y(t)$ what you have spent in total at time $t$.
+      Assume you are at some timepoint such that $y(t)=2\OPT(t)$. Let
+      $u>t$ be a time such that $\OPT(u)= y(t)$ (assume it exists)
+      and let $i$ be the most
+      expensive item such that $\OPT(u)= b_i + r_i u$. Prove that if you buy
+      item $i$ at time $t$ and wait until time $u$ without buying anything
+      else, then $y(u)< 2\OPT(u)$. Find an upper bound for $y(t^+)$ (what
+      you have spent right after purchasing $i$) to
+      show that $y(t') \leq 4 \OPT(t')$ for every $t'\in [t,u]$.
+      
+
+
+    \item Use what you just showed to find a $4$-competitive algorithm. 
+
+  \end{enumerate}
+
+
+
+
+\end{itemize}
+
+\end{document} 
