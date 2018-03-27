@@ -1,0 +1,185 @@
+\documentclass[11pt, spanish]{article}
+\pagestyle{empty}
+
+%acentos de la forma � en vez de \'a
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+%Enumeración con columnas que se usa con \begin{multicols}{2} \begin{enumerate}
+\usepackage{multicol}
+\usepackage{multirow}
+
+
+%Para poder usar begin comment
+\usepackage{verbatim}
+
+%Teoremas
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}
+
+
+%letras para enumerar
+\makeatletter\renewcommand\theenumi{\@alph\c@enumi}\makeatother\renewcommand\labelenumi{\theenumi)}
+
+%m�rgenes
+\usepackage[left=2cm,top=2cm,right=2cm]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{enumerate}
+
+%conjuntos N, Q, R, Z, C
+\usepackage{dsfont}
+\newcommand{\N}{\mathds{N}}
+\newcommand{\Q}{\mathds{Q}}
+\newcommand{\R}{\mathds{R}}
+\newcommand{\Z}{\mathds{Z}}
+\newcommand{\C}{\mathds{C}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Pol}{\mathcal{P}}
+
+%Transformada de Laplace
+\renewcommand{\L}{\mathcal{L}}
+
+%Probabilidades
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Var}{\mathbb{V}\text{ar}}
+
+%l�gica
+\newcommand{\ssi}{\Leftrightarrow}
+
+%funciones
+\newcommand{\function}[5]{  \begin{array}{rl}
+                                #1: #2 &\longrightarrow #3 \\
+                                #4 & \longmapsto #1\left(#4\right)= #5
+                            \end{array} }
+
+\newcommand{\funcion}[3]{#1: #2 \longrightarrow #3 }
+\newcommand{\parteentera}[1]{[#1]}
+
+%%%operadores matematicos
+\usepackage{mathtools}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\newcommand{\tr}{\text{tr}}
+
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+% % % % % % % % % %
+%\providecommand{\abs}[1]{\lvert#1 \rvert}
+%\providecommand{\norm}[1]{\lVert#1 \rVert}
+%\providecommand{\pin}[2]{\left< #1,#2 \right>} %producto interno
+
+\providecommand{\dpartial}[2]{\frac{\partial #1}{\partial #2}} %derivada parcial
+
+\usepackage{amssymb}
+\usepackage{amsmath, amsthm, amsfonts}
+
+%Im�genes
+\usepackage{graphicx}
+\usepackage{float}
+
+
+
+\newcommand{\bit}{\textsc{bit}}
+\newcommand{\opt}{\textsc{opt}}
+
+
+\begin{document}
+\fancyhead[L]{Facultad de Ciencias Físicas y Matemáticas}
+\fancyhead[R]{Universidad de Chile}
+
+\begin{flushleft}
+  \textbf{Online Algorithms and Scheduling}
+  \\\textbf{Profesor:} Andreas Wiese.
+  \\\textbf{Auxiliar:} Andrés Cristi.
+\end{flushleft}
+
+
+\begin{center}
+  \large{\textbf{Clase Auxiliar 2\\ BIT Algorithm for List Update Problem}}
+\end{center}
+
+%\begin{flushleft}
+
+
+
+\begin{itemize}
+\item[\textbf{P1.}] 
+Recordemos el problema de List Update o List Accessing. Se tiene una lista $L$ ordenada de $n$ elementos distintos, los que son requeridos
+secuencialmente y deben ser servidos inmediatamente. El costo de servir un elemento
+es su posición en la lista al momento de ser
+requerido. Una vez servido, se puede mover
+hacia cualquier posición más adelante sin costo.
+Además, se puede hacer intercambio de
+elementos adyacentes con costo 1.
+
+Consideremos el algoritmo \bit: Al comienzo
+se asocia a cada elemento $x$ de manera
+independiente un bit aleatorio
+$b(x)$, que es negado cada vez que se accede
+a $x$. Si el bit pasa de 0 a 1, entonces $x$
+se mueve al frente. Si no, se deja en su lugar.
+
+ El objetivo de este
+ejercicio es mostrar que el algoritmo \bit{} es
+$1.75$-competitivo. Para ello suponemos que
+\opt{} y \bit{} están sirviendo al mismo tiempo
+los requerimientos de una instancia $\sigma$.
+Enumeramos cada acción $i$, considerando dos
+tipos de eventos: ambos algoritmos sirven
+un requerimiento, posiblemente con movimientos 
+gratis, u \opt{} hace un cambio pagado.
+Denotamos por $bit_i$ y $opt_i$ los costos
+del evento $i$.
+
+\begin{enumerate}
+    \item Muestre que después de servir una secuencia fija
+    $\sigma$ de requerimientos, los  bits en
+    \bit{} son
+    uniformes e independientes.
+    
+    \item Decimos que $(y,x)$ es una inversión
+    si $y$ está antes que $x$ en la lista de
+    \bit{}  y al revés en la lista de \opt. Sean
+    $\varphi_j$ el número de inversiones
+    $(y,x)$ con $b(x)=j$. Denotando por
+    \[ \Phi = \varphi_0 + 2\varphi_1 \]
+    muestre que al comienzo $\Phi_0=0$.
+    
+    \item Consideremos el costo amortizado
+    \[ a_i = bit_i + \Phi_i - \Phi_{i-1}. \]
+    Muestre que si $i$ es un cambio pagado
+    de \opt, entonces $\E(a_i)\leq 1.5 \cdot opt_i$.
+    
+    \item Suponga ahora que $i'$ es un acceso
+    al item $x$, que está en la posición $k$
+    en \opt. Escriba $\Delta \Phi = A+B+C$, donde
+    $A$ es el cambio de potencial generado
+    por la creación de inversiones, $B$ es el
+    cambio debido a eliminación de inversiones
+    y $C$ es el cambio debido a cambio de bit.
+    Muestre que $\E(A)\leq \frac{3}{4} (k-1)$.
+    
+    \item Sea $R$ el número de inversiones de la
+    forma $(y,x)$ al momento de acceder a $x$.
+    Muestre que $B+C=-R$.
+    
+    \item Pruebe que $\E(a_{i'}) \leq 1.75 \cdot opt_{i'}$ y concluya que \bit{} es $1.75$-competitivo.
+\end{enumerate}
+
+\end{itemize}
+
+\end{document} 
