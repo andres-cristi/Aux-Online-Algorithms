@@ -109,7 +109,7 @@
 
 
 \begin{center}
-  \large{\textbf{Clase Auxiliar 3\\ }
+  \large{\textbf{Clase Auxiliar 3\\ 5 de Abril }}
 \end{center}
 
 %\begin{flushleft}
@@ -117,9 +117,47 @@
 
 
 \begin{itemize}
-\item[\textbf{P1.}] Yao's Principle
+  \item[\textbf{P1.}] \textbf{Online Bipartite Matching}
 
-\item[\textbf{P2.}] Metrical Task System
+    Dado un grafo bipartito $G=(U,V,E)$ que posee un \textit{matching} perfecto $M^*$,
+    los v\'ertices de $U$ son revelados
+    uno a uno de manera on-line, junto con sus aristas. Cada vez que llega un
+    nuevo v\'ertice $u$, debe decidirse de manera irrevocable con qu\'e
+    elemento de $N(u)$ se va a conectar. El objetivo es maximizar el tamaño
+    del \textit{matching} resultante.
+    \begin{enumerate}
+      \item Pruebe que el algoritmo que a la llegada de $u$, lo asigna a un
+	elemento arbitrario de $N(u)$ si es posible es 2-competitivo.
+      \item Muestre que cualquier algoritmo determinista es en el mejor
+	caso 2-competitivo.
+
+      \item Muestre que $4/3$ es una cota inferior para la competitividad
+	de un algoritmo aleatorizado.
+
+      \item Considere el algoritmo \textsc{Ranking}: al comienzo se elige un orden al
+	azar $\sigma$ sobre $V$. Cada vez que llega $u$, se elige el primer
+	elemento de $N(u)$ disponible según $\sigma$. Pruebe que si $u$ no
+	es asignado a $v=M^*(u)$ por \textsc{Ranking}, entonces es asignado a
+	un v\'ertice $v'$ con $\sigma(v') \leq \sigma(v)$.
+
+      \item Sea $u\in U$ y $v= M^*(u)$, y considere un orden $\sigma'$. Sea
+	$\sigma_i$ la permutación que resulta de mover $v$ a la posición $i$.
+	Muestre que si $v$ no es asignado por \textsc{Ranking}$(\sigma')$, entonces,
+	para todo $i$, $u$ es asignado por \textsc{Ranking}$(\sigma_i)$ a un
+	v\'ertice $v_i$ con $\sigma_i(v_i) \leq \sigma'(v)$.
+
+      \item Sea $x_t$ la probabilidad (dada por la distribución de $\sigma$) de que
+	el v\'ertice de $V$ que tiene la posición $t$ sea asignado por
+	\textsc{Ranking}. Pruebe que $1-x_t \leq \frac{1}{n} \sum_{1\leq s\leq t} x_s$.
+
+      \item Muestre que en esperanza \textsc{Ranking} asigna a al menos 
+	\begin{align*}
+	  \sum_{s=1}^n \left( 1- \frac{1}{n+1} \right)^s
+	\end{align*}
+	parejas.
+
+      \item Concluya que \textsc{Ranking} es $\frac{e}{e-1}$ competitivo.
+    \end{enumerate}
 
 \end{itemize}
 
