@@ -1,0 +1,165 @@
+\documentclass[11pt, spanish]{article}
+\pagestyle{empty}
+
+%acentos de la forma � en vez de \'a
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+%Enumeración con columnas que se usa con \begin{multicols}{2} \begin{enumerate}
+\usepackage{multicol}
+\usepackage{multirow}
+
+
+%Para poder usar begin comment
+\usepackage{verbatim}
+
+%Teoremas
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}
+
+
+%letras para enumerar
+\makeatletter\renewcommand\theenumi{\@alph\c@enumi}\makeatother\renewcommand\labelenumi{\theenumi)}
+
+%m�rgenes
+\usepackage[left=2cm,top=2cm,right=2cm]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{enumerate}
+
+%conjuntos N, Q, R, Z, C
+\usepackage{dsfont}
+\newcommand{\N}{\mathds{N}}
+\newcommand{\Q}{\mathds{Q}}
+\newcommand{\R}{\mathds{R}}
+\newcommand{\Z}{\mathds{Z}}
+\newcommand{\C}{\mathds{C}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Pol}{\mathcal{P}}
+
+%Transformada de Laplace
+\renewcommand{\L}{\mathcal{L}}
+
+%Probabilidades
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Var}{\mathbb{V}\text{ar}}
+
+
+%Optimization
+\newcommand{\OPT}{\textsc{opt}}
+\newcommand{\ALG}{\textsc{alg}}
+
+
+%l�gica
+\newcommand{\ssi}{\Leftrightarrow}
+
+%funciones
+\newcommand{\function}[5]{  \begin{array}{rl}
+                                #1: #2 &\longrightarrow #3 \\
+                                #4 & \longmapsto #1\left(#4\right)= #5
+                            \end{array} }
+
+\newcommand{\funcion}[3]{#1: #2 \longrightarrow #3 }
+\newcommand{\parteentera}[1]{[#1]}
+
+%%%operadores matematicos
+\usepackage{mathtools}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\newcommand{\tr}{\text{tr}}
+
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+% % % % % % % % % %
+%\providecommand{\abs}[1]{\lvert#1 \rvert}
+%\providecommand{\norm}[1]{\lVert#1 \rVert}
+%\providecommand{\pin}[2]{\left< #1,#2 \right>} %producto interno
+
+\providecommand{\dpartial}[2]{\frac{\partial #1}{\partial #2}} %derivada parcial
+
+\usepackage{amssymb}
+\usepackage{amsmath, amsthm, amsfonts}
+
+%Im�genes
+\usepackage{graphicx}
+\usepackage{float}
+\begin{document}
+\fancyhead[L]{Facultad de Ciencias Físicas y Matemáticas}
+\fancyhead[R]{Universidad de Chile}
+
+\begin{flushleft}
+  \textbf{Tópicos en Matemáticas Discretas III - Online Algorithms and Scheduling}
+  \\\textbf{Professor:} Andreas Wiese.
+  \\\textbf{Teaching Assistant:} Andrés Cristi.
+\end{flushleft}
+
+
+\begin{center}
+  \Large{\textbf{Homework \#2}}
+\end{center}
+
+%\begin{flushleft}
+
+
+
+\begin{itemize}
+  \item[\textbf{P1.}]
+    \begin{enumerate}
+      \item Consider an arbitrary two-person zero-sum game
+    	defined by the $(n\times m)$-matrix $M = (m_{ij})$. Let
+    	\begin{align*}
+      		V_R &= \max_i \min_j m_{ij} \\
+      		V_C &= \min_j \max_i m_{ij}
+    	\end{align*}
+	Show that $V_R\leq V_C$.
+      \item Give an example in which $V_R< V_C$.
+
+    \end{enumerate}
+    
+
+
+\item[\textbf{P2.}] 
+  \begin{enumerate}
+    \item Formulate the Ski Rental Problem as a Metrical Task System.
+    \item Formulate the list accessing problem as a Metrical Task System.
+    \item Consider the greedy algorithm for an MTS, this is, one that
+      from state $s_i$ moves to $s_{i+1}\in \arg\min_x d(s_i,x) + \tau_{i+1}(x)$
+      to process task $\tau_{i+1}$. Show that this algorithm is not
+      competitive at all.
+  \end{enumerate}
+  
+  \item[\textbf{P3.}]  In this exercise we compute a lower bound for
+    the competitivity ratio of any randomized algorithm for the list
+    accessing problem. For that purpose, consider an instance where
+    the requests are drawn uniformly at random from $\{1,\dots n\}$.
+    
+	\begin{enumerate}
+	  \item Calculate the expected cost of serving one request
+	    for a deterministic algorithm.
+	  \item Calculate the expected optimal offline cost if $n=2$ and
+	    there are only 3 requests.
+	  \item Conclude a lower bound of $12/11$ for the (asymptotic) 
+	    competitivity of any randomized algorithm. 
+	  \item Get a strictly better bound.
+
+	\end{enumerate}
+
+
+
+
+\end{itemize}
+
+\end{document} 
