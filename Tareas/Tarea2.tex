@@ -116,48 +116,54 @@
 
 
 \begin{itemize}
-  \item[\textbf{P1.}]
-    \begin{enumerate}
-      \item Consider an arbitrary two-person zero-sum game
-    	defined by the $(n\times m)$-matrix $M = (m_{ij})$. Let
-    	\begin{align*}
-      		V_R &= \max_i \min_j m_{ij} \\
-      		V_C &= \min_j \max_i m_{ij}
-    	\end{align*}
-	Show that $V_R\leq V_C$.
-      \item Give an example in which $V_R< V_C$.
-
-    \end{enumerate}
-    
-
-
-\item[\textbf{P2.}] 
+\item[\textbf{P1.}] 
   \begin{enumerate}
     \item Formulate the Ski Rental Problem as a Metrical Task System.
     \item Formulate the list accessing problem as a Metrical Task System.
     \item Consider the greedy algorithm for an MTS, this is, one that
       from state $s_i$ moves to $s_{i+1}\in \arg\min_x d(s_i,x) + \tau_{i+1}(x)$
-      to process task $\tau_{i+1}$. Show that this algorithm is not
-      competitive at all.
+      to process task $\tau_{i+1}$. Show that this algorithm has an
+      unbounded competitive ratio.
   \end{enumerate}
   
-  \item[\textbf{P3.}]  In this exercise we compute a lower bound for
-    the competitivity ratio of any randomized algorithm for the list
-    accessing problem. For that purpose, consider an instance where
-    the requests are drawn uniformly at random from $\{1,\dots n\}$.
-    
-	\begin{enumerate}
-	  \item Calculate the expected cost of serving one request
-	    for a deterministic algorithm.
-	  \item Calculate the expected optimal offline cost if $n=2$ and
-	    there are only 3 requests.
-	  \item Conclude a lower bound of $12/11$ for the (asymptotic) 
-	    competitivity of any randomized algorithm. 
-	  \item Get a strictly better bound.
+  \item[\textbf{P2.}]  Using Yao's Principle find a lower bound of at least $1.1$ for
+    the competitivity ratio of any randomized algorithm for the list 
+    accessing problem.
 
+
+      \item[\textbf{P3.}] A stack is a Last-in-First-Out memory/buffer $S$, on which
+	the following operations are defined:
+	\begin{itemize}
+	  \item \textsc{Push}$(S,x)$ adds the object $x$ on top of the stack,
+	    with cost 1.
+	  \item \textsc{Pop}$(S)$ returns the topmost object of the stack
+	    and removes it, with cost 1.
+	  \item \textsc{Multipop}$(S,k)$ returns the topmost $k$ objects with cost $k$.
+	\end{itemize}
+	We analyze the cost of processing a sequence of $n$ stack operations.
+	\begin{enumerate}
+	  \item Apply the usual worst case analysis to obtain a bound of $O(n^2)$ in
+	    the processing time, when begining with an empty stack.
+	  \item Let $c_i$ be the cost of the $i$-th operation and $S_i$ the stack
+	    after the $i$-th operation. For some potential function $\Phi$, define
+	    the amortized cost
+	    \begin{align*}
+	      a_i= c_i + \Phi(S_i) - \Phi(S_{i-1})
+	    \end{align*}
+	    and show that the total cost is at most $\Phi(S_0) + \sum_{i=1}^n a_i$.
+	  \item Use the potential $\Phi(S)= |S|$ to show a bound of $O(n)$ in the
+	    processing time (assume that whenever a \textsc{Pop} or \textsc{Multipop}
+	    operation is done there are sufficiently many elements on the stack).
 	\end{enumerate}
 
-
+      \item[\textbf{P4.}] A \textit{tight example} for a $c$-competitive algorithm
+	for a minimization problem is a family of instances $(I_\varepsilon)_{\varepsilon>0}$
+	 such that
+	\begin{align*}
+	  \text{ALG}(I_\varepsilon) \geq (c- \varepsilon) \text{OPT}(I_\varepsilon).
+	\end{align*}
+	Find a \textit{tight example} for the traversal algorithm for Metrical Task
+	Systems with $N$ states.
 
 
 \end{itemize}
