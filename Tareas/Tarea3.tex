@@ -1,0 +1,157 @@
+\documentclass[11pt, spanish]{article}
+\pagestyle{empty}
+
+%acentos de la forma � en vez de \'a
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+%Enumeración con columnas que se usa con \begin{multicols}{2} \begin{enumerate}
+\usepackage{multicol}
+\usepackage{multirow}
+
+
+%Para poder usar begin comment
+\usepackage{verbatim}
+
+%Teoremas
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}
+
+
+%letras para enumerar
+\makeatletter\renewcommand\theenumi{\@alph\c@enumi}\makeatother\renewcommand\labelenumi{\theenumi)}
+
+%m�rgenes
+\usepackage[left=2cm,top=2cm,right=2cm]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{enumerate}
+
+%conjuntos N, Q, R, Z, C
+\usepackage{dsfont}
+\newcommand{\N}{\mathds{N}}
+\newcommand{\Q}{\mathds{Q}}
+\newcommand{\R}{\mathds{R}}
+\newcommand{\Z}{\mathds{Z}}
+\newcommand{\C}{\mathds{C}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Pol}{\mathcal{P}}
+
+%Transformada de Laplace
+\renewcommand{\L}{\mathcal{L}}
+
+%Probabilidades
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Var}{\mathbb{V}\text{ar}}
+
+
+%Optimization
+\newcommand{\OPT}{\textsc{opt}}
+\newcommand{\ALG}{\textsc{alg}}
+
+
+%l�gica
+\newcommand{\ssi}{\Leftrightarrow}
+
+%funciones
+\newcommand{\function}[5]{  \begin{array}{rl}
+                                #1: #2 &\longrightarrow #3 \\
+                                #4 & \longmapsto #1\left(#4\right)= #5
+                            \end{array} }
+
+\newcommand{\funcion}[3]{#1: #2 \longrightarrow #3 }
+\newcommand{\parteentera}[1]{[#1]}
+
+%%%operadores matematicos
+\usepackage{mathtools}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\newcommand{\tr}{\text{tr}}
+
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+% % % % % % % % % %
+%\providecommand{\abs}[1]{\lvert#1 \rvert}
+%\providecommand{\norm}[1]{\lVert#1 \rVert}
+%\providecommand{\pin}[2]{\left< #1,#2 \right>} %producto interno
+
+\providecommand{\dpartial}[2]{\frac{\partial #1}{\partial #2}} %derivada parcial
+
+\usepackage{amssymb}
+\usepackage{amsmath, amsthm, amsfonts}
+
+%Im�genes
+\usepackage{graphicx}
+\usepackage{float}
+\begin{document}
+\fancyhead[L]{Facultad de Ciencias Físicas y Matemáticas}
+\fancyhead[R]{Universidad de Chile}
+
+\begin{flushleft}
+  \textbf{Tópicos en Matemáticas Discretas III - Online Algorithms and Scheduling}
+  \\\textbf{Professor:} Andreas Wiese.
+  \\\textbf{Teaching Assistant:} Andrés Cristi.
+\end{flushleft}
+
+
+\begin{center}
+  \Large{\textbf{Homework \#3}}
+\end{center}
+
+%\begin{flushleft}
+
+
+
+\begin{itemize}
+  \item[\textbf{P1.}] 
+    \begin{enumerate}
+      \item Show that the greedy algorithm for the $k$-server problem
+	is not $c$-competitive for any constant $c$.
+      \item A space $(X,d)$ is called asymmetric if $d:X^2\rightarrow [0,+\infty]$
+	satisfies the triangle inequality but not the symmetry condition. Show that
+	the competitive ratio for $k$-server for such spaces cannot be bounded
+	by a function of $k$.
+    \end{enumerate}
+
+  
+  \item[\textbf{P2.}] Consider a uniform MTS on $n$ states, i.e. a space $(X,d)$ such
+    that $d(x,y)=1$ for every pair $x,y\in X$; in which the tasks take values only in
+    $\{0,1\}$.
+    \begin{enumerate}
+      \item Find a random instance on $k$ tasks such that the expected cost of any
+	deterministic algorithm is $k/n$.
+      \item Let $c(k)$ be the expected cost of the optimal offline algorithm.
+	Prove that $\lim_k \frac{c(k)}{k}= \frac{1}{nH_n}$, where $H_n$ is 
+	the $n$-th harmonic number.
+      \item Conclude that no random algorithm can be better than $H_n$-competitive.
+      \item For a state $s$ and a sequence of tasks $\hat{\tau}$, define
+	$\rho(s,\hat{\tau})= w(s,\hat{\tau}) - \min_x w(x,\hat{\tau})$, where
+	$w$ is the work function of the MTS. Consider $\rho(\cdot,\hat{\tau})$ as
+	a point in $\R^X$, and describe its possible values.
+      \item Consider now $\rho$ as a description of the system after a secuence
+	of tasks. Find a reasonable random algorithm that moves to a random
+	state given by a distribution that depends only on $\rho$, that is
+	$H_n$-competitive. \textbf{Hint:} Consider the potential $\Phi=H_m$, where
+	$m= | \arg\min_{x\in X} \rho(x,\hat{\tau}) |$.
+    \end{enumerate}
+
+  \item[\textbf{P3.}] $k$-server and paging.
+
+  \item[\textbf{P4.}] SC $1/2$.
+
+\end{itemize}
+
+\end{document} 
