@@ -135,7 +135,11 @@
 	deterministic algorithm is $k/n$.
       \item Let $c(k)$ be the expected cost of the optimal offline algorithm.
 	Prove that $\lim_k \frac{c(k)}{k}= \frac{1}{nH_n}$, where $H_n$ is 
-	the $n$-th harmonic number.
+	the $n$-th harmonic number. It will be helpful to remember the following result: let $(X_i)_{i\in\N}$ be a sequence of positive and iid random
+	varibles with finite expectation, and define $S_n= \sum_{i=1}^n X_i$.
+	We call $N(t)= \min \{ n\in \N: S_n\geq t \}$ a renewal process, and the
+	following limit holds $\lim_{t\rightarrow\infty} \frac{\E\big(N(t)\big)}{t}= \frac{1}{\E(X_1)}$.
+	
       \item Conclude that no random algorithm can be better than $H_n$-competitive.
       \item For a state $s$ and a sequence of tasks $\hat{\tau}$, define
 	$\rho(s,\hat{\tau})= w(s,\hat{\tau}) - \min_x w(x,\hat{\tau})$, where
@@ -148,9 +152,10 @@
 	$m= | \arg\min_{x\in X} \rho(x,\hat{\tau}) |$.
     \end{enumerate}
 
-  \item[\textbf{P3.}] $k$-server and paging.
+  \item[\textbf{P3.}] Use the DC-TREE algorithm to construct an algorithm for paging problem with competitive ratio $k$. What is the interpretation of this algorithm in paging, ignoring $k$-sever?
 
-  \item[\textbf{P4.}] SC $1/2$.
+  \item[\textbf{P4.}] Consider the class of metric spaces $\mathcal{M}$ that
+  satisfy the following properties:
 
 \end{itemize}
 
