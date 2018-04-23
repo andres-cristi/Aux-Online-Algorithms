@@ -121,15 +121,19 @@
       \item Show that the greedy algorithm for the $k$-server problem
 	is not $c$-competitive for any constant $c$.
       \item A space $(X,d)$ is called asymmetric if $d:X^2\rightarrow [0,+\infty]$
-	satisfies the triangle inequality but not the symmetry condition. Show that
+	satisfies the conditions
+	\begin{enumerate}[i.]
+	  \item $d(x,x)=0, \forall x\in X$
+	  \item $d(x,y)\leq d(x,z)+d(z,y), \forall x,y,z\in X$
+	\end{enumerate}
+	but it is not symmetric. Show that
 	the competitive ratio for $k$-server for such spaces cannot be bounded
 	by a function of $k$.
     \end{enumerate}
 
   
   \item[\textbf{P2.}] Consider a uniform MTS on $n$ states, i.e. a space $(X,d)$ such
-    that $d(x,y)=1$ for every pair $x,y\in X$; in which the tasks take values only in
-    $\{0,1\}$.
+    that $d(x,y)=1$ for every pair $x,y\in X$; in which the tasks are functions $\tau:X\rightarrow \{0,1\}$.
     \begin{enumerate}
       \item Find a random instance on $k$ tasks such that the expected cost of any
 	deterministic algorithm is $k/n$.
@@ -155,9 +159,27 @@
   \item[\textbf{P3.}] Use the DC-TREE algorithm to construct an algorithm for paging problem with competitive ratio $k$. What is the interpretation of this algorithm in paging, ignoring $k$-sever?
 
   \item[\textbf{P4.}] Consider the class of metric spaces $(\mathcal{M},d)$, where $\mathcal{M}$
-  is a convex subset of a vector space, and $d$ is
-  such that for every $x,y,r\in \mathcal{M}$ in the
-  same line and $p\in \mathcal{M}$ ...
+
+  is a convex subset of a vector space and $d$ satisfies that for every three different points
+  $x,y,r\in \mathcal{M}$ such that $y= \lambda x + (1-\lambda)r$, for some $\lambda\in (0,1)$,
+  the following implication is true:
+  \begin{align*}
+    \big[ d(p,x) \leq d(p,r) \Rightarrow d(p,y) \leq d(p,r)  \big], \forall p\in X.
+  \end{align*}
+  \begin{enumerate}
+    \item Prove that every euclidean space is in this class of
+  	spaces.
+      \item Prove that the algorithm SC$_{1/2}$ we studied in the TA class is 3-competitive
+	for every space in this class.
+    \end{enumerate}
+
+  \item[\textbf{P5.}] Consider the following 2-server algorithm. After serving each request,
+    label the server at the request as $s_1$ and the other as $s_2$ (if both are in the same
+    point, label arbitrarily). Consider the next request $r$ and set $b= d(s_1,r)$. If
+    $d(s_2,r)< 3b$, serve $r$ with $s_2$. Otherwise, serve it with $s_1$ and move $s_2$
+    a distance $3b$ towards $r$. Prove that this algorithm is $O(1)$-competitive in any
+    Euclidean space.
+
 
 \end{itemize}
 
