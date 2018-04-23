@@ -95,6 +95,7 @@
 
 \newcommand{\bit}{\textsc{bit}}
 \newcommand{\opt}{\textsc{opt}}
+\newcommand{\SL}{\text{slack}}
 
 
 \begin{document}
@@ -118,6 +119,57 @@
 
 \begin{itemize}
   \item[\textbf{P1.}] \textbf{Slack Coverage Algorithm}
+
+	  En el espacio $(\R^2,d)$, con $d$ la distancia Euclideana, definimos
+	  \begin{align*}
+		 \SL(x,y,r) = d(y,x) + d(x,r) - d(y,r) 
+	  \end{align*}
+	  que por la desigualdad triangular es siempre un valor no negativo.
+
+	  Para el problema 2-\textit{server} consideremos el algoritmo
+	  Slack-Coverage$(\gamma)$ (que abreviamos SC$_\gamma$), con
+	  $\gamma\in [0,1]$. Este algoritmo frente a un request $r$
+	  si $x$ es el servidor más cercano, mueve el otro servidor, $y$,
+	  hacia el servidor $x$ una distancia $\gamma\cdot \SL(x,y,r)$ y luego
+	  sirve $r$ con $x$.
+
+	  Consideremos el potencial
+	  \begin{align*}
+		  \Phi = a M_{\min} + b\cdot d(x,y)
+	  \end{align*}
+	  donde $M_{\min}$ es el valor del \textit{matching} mínimo
+	  entre los servidores de SC$_{\gamma}$ y OPT, y $a,b$ son 
+	  parámetros positivos.
+
+	  \begin{enumerate}
+		  \item Pruebe que cuando OPT sirve un request, $\Phi$ 
+			  aumenta en a lo más $a\cdot c_{\text{OPT}}$, con
+			  $c_{\text{OPT}}$ la distancia que mueve OPT.
+		  \item Denotando $x_0, y_0$ a las posiciones de los 
+			  servidores de SC$_\gamma$ antes de servir $r$,
+			  pruebe que
+			  \begin{align*}
+				  \Delta d(x,y) \leq d(y_0,r) + d(x_0,y_0).
+			  \end{align*}
+		  \item Sean $s_1$ y $s_2$ los servidores de OPT, donde $s_1$ es
+			  el que acaba de servir $r$. Suponga que antes de que SC$_{\gamma}$
+			  mueva, $x$ estaba emparejado con $s_1$ en $M_{\min}$.
+			  Pruebe que
+			  \begin{align*}
+				  \Delta \Phi\leq a\big( \gamma\cdot \SL(x,y,r)-d(x,r) \big)
+				  +b \big( d(y,r) - d(x,y) \big).
+			  \end{align*}
+		  \item En el caso en que $y$ era el que estaba emparejado con $s_1$, pruebe
+			  que
+			  \begin{align*}
+				  \Delta \Phi \leq a\big( d(x,y) - \gamma \cdot\SL(x,y,r) - d(y,r) \big)
+				  + b\big( d(y,r) - d(x,y) \big)
+			  \end{align*}
+		  \item Encuentre las condiciones sobre $(a,b,\gamma)$ para que 
+			  SC$_{\gamma}$ sea $a$-competitivo.
+		  \item Pruebe que SC$_{\gamma}$ es 3-competitivo y que este es
+			  el mejor factor que permite este m\'etodo.
+	  \end{enumerate}
 
     
     
