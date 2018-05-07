@@ -1,0 +1,183 @@
+\documentclass[11pt, spanish]{article}
+\pagestyle{empty}
+
+%acentos de la forma � en vez de \'a
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+%Enumeración con columnas que se usa con \begin{multicols}{2} \begin{enumerate}
+\usepackage{multicol}
+\usepackage{multirow}
+
+
+%Para poder usar begin comment
+\usepackage{verbatim}
+
+%Teoremas
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}
+
+
+%letras para enumerar
+\makeatletter\renewcommand\theenumi{\@alph\c@enumi}\makeatother\renewcommand\labelenumi{\theenumi)}
+
+%m�rgenes
+\usepackage[left=2cm,top=2cm,right=2cm]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{enumerate}
+
+%conjuntos N, Q, R, Z, C
+\usepackage{dsfont}
+\newcommand{\N}{\mathds{N}}
+\newcommand{\Q}{\mathds{Q}}
+\newcommand{\R}{\mathds{R}}
+\newcommand{\Z}{\mathds{Z}}
+\newcommand{\C}{\mathds{C}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Pol}{\mathcal{P}}
+
+%Transformada de Laplace
+\renewcommand{\L}{\mathcal{L}}
+
+%Probabilidades
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Var}{\mathbb{V}\text{ar}}
+
+%l�gica
+\newcommand{\ssi}{\Leftrightarrow}
+
+%funciones
+\newcommand{\function}[5]{  \begin{array}{rl}
+                                #1: #2 &\longrightarrow #3 \\
+                                #4 & \longmapsto #1\left(#4\right)= #5
+                            \end{array} }
+
+\newcommand{\funcion}[3]{#1: #2 \longrightarrow #3 }
+\newcommand{\parteentera}[1]{[#1]}
+
+%%%operadores matematicos
+\usepackage{mathtools}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\newcommand{\tr}{\text{tr}}
+
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+% % % % % % % % % %
+%\providecommand{\abs}[1]{\lvert#1 \rvert}
+%\providecommand{\norm}[1]{\lVert#1 \rVert}
+%\providecommand{\pin}[2]{\left< #1,#2 \right>} %producto interno
+
+\providecommand{\dpartial}[2]{\frac{\partial #1}{\partial #2}} %derivada parcial
+
+\usepackage{amssymb}
+\usepackage{amsmath, amsthm, amsfonts}
+
+%Im�genes
+\usepackage{graphicx}
+\usepackage{float}
+
+
+
+\newcommand{\bit}{\textsc{bit}}
+\newcommand{\opt}{\textsc{opt}}
+\newcommand{\SL}{\text{slack}}
+
+
+\begin{document}
+\fancyhead[L]{Facultad de Ciencias Físicas y Matemáticas}
+\fancyhead[R]{Universidad de Chile}
+
+\begin{flushleft}
+  \textbf{Online Algorithms and Scheduling}
+  \\\textbf{Profesor:} Andreas Wiese.
+  \\\textbf{Auxiliar:} Andrés Cristi.
+\end{flushleft}
+
+
+\begin{center}
+  \large{\textbf{Clase Auxiliar 7\\ 07 de Mayo }}
+\end{center}
+
+%\begin{flushleft}
+
+
+
+\begin{itemize}
+	\item[\textbf{P1.}] Si $w$ es la \textit{work function}
+		actual, $r$ es el siguiente request y $w'$ es
+		la actualización de $w$ con $r$, decimos que
+		la configuración $A$ es máximo con respecto a
+		$w$ si maximiza $\max_X\{ w'(X)-w(X)\}$ y que es
+		mínimo para $r$ con respecto a $w$ si minimiza
+		$\min_X\{w(X) - \sum_{x\in X} d(x,r) \}$. En cátedra
+		probamos que si $A$ es mínimo entonces tambi\'en
+		es máximo. Considere el espacio m\'etrico dado
+		por los puntos en un círculo y la distancia sobre
+		\'este.
+		\begin{enumerate}
+			\item Muestre que si $\bar{r}_i$ es el punto
+				opuesto en el círculo a $r_i$, entonces
+				la configuración $\bar{r}_i^k$ ($k$
+				copias de $\bar{r}_i$) es mínimo
+				para $r_i$ con respecto a $w_{i-1}$.
+			\item Pruebe que las siguientes desigualdades son
+				equivalentes (para ciertas $C, C'$ constantes
+				que no dependen de la instancia)
+				\begin{align}
+					\sum_{i=1}^n \max_X\{ w_i(X)-w_{i-1}
+				(X)\}
+				&\leq (c+1) \min_Y\{w_n(Y)\} + C\\
+				\sum_{i=1}^n \left( w_i(\bar{r}_i^k)
+				-w_{i-1}(\bar{r}_i^k) \right)
+				&\leq (c+1) w_n(\bar{r}_n^k) + C'
+				\end{align}
+			\item Pruebe que si $i<j$, entonces
+				$w_i(\bar{r}_i^k)\leq w_{j-1} + kd(\bar{r}_i,
+				\bar{r}_j)$.
+			\item Sea $OPT_h(\sigma)$ el óptimo offline
+				al servir $\sigma$ con $h$ servidores.
+				Pruebe que hay exactamente $h$ requests
+				$i$ tales que el servidor que sirve $i$
+				no se mueve más hasta el final de la
+				instancia.
+			\item Pruebe que existe una constante $C$ que no
+				depende de $\sigma$, tal que para todo
+				$h$
+				\begin{align}
+					\sum_{i=1}^n w_i(\bar{r}_i^k)\leq
+					\sum_{i=1}^n w_{i-1}(\bar{r}_i^k)
+					+k\cdot OPT_h(\sigma)
+					+h\cdot OPT_k(\sigma) + C
+				\end{align}
+			\item Concluya que el WFA$_k$ es $2k-1$ competitivo
+				en el círculo,
+				y muestre una cota más ajustada para el
+				caso en que se compara contra un óptimo
+				offline con menos servidores.
+			\item Qu\'e tan necesario es que el espacio
+				fuera un círculo? Considere un espacio
+				en el que para todo punto $a$ existe
+				un punto opuesto $\bar{a}$ tal que
+				para todo punto $b$, $d(a,b)+d(b,\bar{a})=
+				\Delta$.
+		\end{enumerate} 
+    
+    
+\end{itemize}
+
+\end{document} 
